@@ -41,11 +41,13 @@ exports.login = function (req, res) {
       }
 
       if (result.length > 0) {
-        const verified = await verifyPassword(post.password, result[0].salt, result[0].password); // password 검증
-        if(verified) {
-          res.json({ status: 'success', message: 'Login successful' });
+        const verified = await verifyPassword(post.password, result[0].salt, result[0].password);
+        if (verified) {
+          console.log("dbquery pass");
+          callback({ status: 'success', message: 'Login successful' });
         } else {
-          res.json({ status: 'error', message: 'Login failed' });
+          console.log("error");
+          callback({ status: 'error', message: 'Login failed' });
         }
       } else {
         res.json({ status: 'error', message: 'Login failed' });

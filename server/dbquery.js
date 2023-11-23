@@ -29,7 +29,7 @@ const verifyPassword = async (password, userSalt, userPassword) => { // password
   return false;
 };
 
-exports.login = function (req, res) {
+exports.login = function (req, res, callback) {
   const post = req.body;
   db.query(`SELECT password, salt FROM profile where email = ?`,
     [post.email],
